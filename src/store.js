@@ -3,11 +3,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // shareDB
 import * as db from './helper/function/changeTodo.js'
-import sendNotification from './helper/function/notification.js'
 // R, W
 const {
   R,
-  W
 } = window
 
 // set vue plugin
@@ -28,6 +26,7 @@ export default new Vuex.Store({
     dialogIsOpen: false,
     isDataFetched: false,
     isComponentLoaded: false,
+    finalizeTest: false,
 
     // test states
     question: '',
@@ -112,7 +111,7 @@ export default new Vuex.Store({
 
     changePage(state, page) {
       state.page = page
-      W.analytics("CHANGE_TAB", {
+      window.W && window.W.analytics("CHANGE_TAB", {
         name: page
       })
     },
@@ -127,6 +126,10 @@ export default new Vuex.Store({
 
     changeDialogIsOpen(state, dialogIsOpen) {
       state.dialogIsOpen = dialogIsOpen
+    },
+
+    changeFinalizeTest(state, finalizeTest) {
+      state.finalizeTest = finalizeTest
     },
 
     changeIsDataFetched(state, isDataFetched) {
@@ -148,24 +151,18 @@ export default new Vuex.Store({
     },
 
     addTest({ state }) {
-      db.add(state.test) 
-      W.analytics("ADD_TEST")
-    },
-
-    removeTodo({
-      dispatch
-    }, id) {
-      dispatch('changeCurrentAction', 'remove')
-      db.remove(id)
-      W.analytics("REMOVE_TODO")
+      db.add(state.test, state.finalizeTest)
+      window.W && window.W.analytics("ADD_TEST")
     },
   },
 
   plugins: [
     ({
       commit
-    }) => W.share.subscribe(test =>
-      commit('addTest', test)
+    }) => window.W && window.W.share.subscribe(res => {
+      commit('addTest', res[0].test)
+      commit('changeFinalizeTest', res[0].finalizeTest)
+    }
     ),
   ],
 })

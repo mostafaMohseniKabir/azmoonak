@@ -84,7 +84,7 @@
 
 <script>
 // modules
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'TheCreateTest',
@@ -113,6 +113,7 @@ export default {
   methods: {
       ...mapMutations([
           'changeDialogIsOpen',
+          'changeFinalizeTest',
           'addQuestion',
           'changeQuestion',
           'changeFirstOption',
@@ -123,7 +124,9 @@ export default {
           'clearInputs',
         ]),
 
-      handleNext () {
+        ...mapActions(['addTest']),
+
+      handleNext() {
           this.addQuestion()
           this.changeQuestion('')
           this.changeFirstOption('')
@@ -135,6 +138,7 @@ export default {
 
       handleCreateTest() {
         this.changeDialogIsOpen(false)
+        this.changeFinalizeTest(true)
         this.addQuestion()
         this.addTest()
       },

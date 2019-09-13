@@ -2,8 +2,9 @@
   <div>
     <TheAppBar/>
 
+    <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
+
     <router-view />
-    <!-- <TheLoading v-if="!isComponentLoaded || !isDataFetched"/> -->
   </div>
 </template>
 

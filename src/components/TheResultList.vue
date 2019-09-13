@@ -8,7 +8,7 @@
           tag="div"
           :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
         >
-          <ResultListItem v-for="result in results" :key="result.id" :result="result" class="result-item" />
+          <TheResultListItem v-for="result in results" :key="result.id" :result="result" class="result-item" />
         </transition-group>
     </ul>
 
@@ -20,14 +20,14 @@
 // modules
 import { mapState, mapMutations } from 'vuex'
 // components
-import ResultListItem from './ResultListItem.vue'
+import TheResultListItem from './TheResultListItem.vue'
 const BaseDialog = () => import('../helper/component/BaseDialog')
 
 export default {
   name: 'TheResultList',
 
   components: {
-    ResultListItem,
+    TheResultListItem,
     BaseDialog,
   },
 

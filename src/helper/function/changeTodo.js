@@ -5,10 +5,10 @@ const { W, R } = window
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const add = (test, index = -1, created_at = now() ) =>
+export const add = (test, finalizeTest, index = -1 ) =>
   dispatch([
     '__insert',
-    [index, { test, created_at }],
+    [index, { test, finalizeTest }],
   ])
 
 export const changeText = (id, text) =>

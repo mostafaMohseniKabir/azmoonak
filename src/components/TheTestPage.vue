@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-btn
+            v-if="!finalizeTest"
             class="button button-weight"
             color="#00DB75"
             dark
@@ -10,7 +11,9 @@
             <v-icon right>mdi-pencil</v-icon>
         </v-btn>
 
-        <BaseDialog title="ایجاد آزمون">
+        <TheTestPageContent v-if="finalizeTest" />
+
+        <BaseDialog v-if="!finalizeTest" title="ایجاد آزمون">
             <TheCreateTest />
         </BaseDialog>
     </div>
@@ -22,6 +25,7 @@ import { mapState, mapMutations } from 'vuex'
 // components
 const BaseDialog = () => import('../helper/component/BaseDialog')
 const TheCreateTest = () => import('./TheCreateTest')
+const TheTestPageContent = () => import('./TheTestPageContent')
 
 export default {
   name: 'TheTestPage',
@@ -29,11 +33,13 @@ export default {
   components: {
     BaseDialog,
     TheCreateTest,
+    TheTestPageContent,
   },
 
   computed: {
     ...mapState([
         'test',
+        'finalizeTest',
     ]),
   },
 

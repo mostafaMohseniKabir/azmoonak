@@ -22,7 +22,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 // components
 
 export default {
-  name: 'ResultListItem',
+  name: 'TheResultListItem',
 
   components: {
   },
