@@ -1,10 +1,8 @@
-import TheTest from './components/TheTest'
-
 export default [
       {
         path: '/',
-        name: 'test',
-        component: TheTest,
+        name: 'home',
+        component: () => import('./components/TheTestPage'),
       },
       {
         path: '/result',

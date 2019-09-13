@@ -19,9 +19,9 @@ let timer = null
 export default new Vuex.Store({
   state: {
     // stuff came from weblite
-    title: 'TODOLITE',
-    username: 'ali',
-    isAdmin: false,
+    title: 'آزمون جامع دین و زندگی',
+    username: 'mostafa_m_k',
+    isAdmin: true,
 
     // view states
     page: 1, // 1: TEST, 0: RESULT
@@ -38,6 +38,8 @@ export default new Vuex.Store({
     answer: 'گزینه اول',
 
     // main data
+    test: [], // [{ id, question, firstOption, ...., forthOption, answer }]
+
     results: [
       {
         id: 1,
@@ -49,35 +51,8 @@ export default new Vuex.Store({
         name: "علی عسگری",
         score: '50%',
       },
-    ], // [{ id, text, creator, functor, vit }],
+    ], // [{ id, name, score }],
   },
-
-  // getters: {
-  //   filteredTodos({
-  //     page,
-  //     todos
-  //   }) {
-  //     const filterFunction =
-  //       page === 'VIT' ?
-  //       ({
-  //         vit,
-  //         functor
-  //       }) => vit && !functor :
-  //       page === 'DONE' ?
-  //       R.prop('functor') :
-  //       page === 'LIST' ?
-  //       ({
-  //         vit,
-  //         functor
-  //       }) => !vit && !functor :
-  //       R.always(false)
-
-  //     return R.compose(
-  //       R.reverse,
-  //       R.filter(filterFunction),
-  //     )(todos)
-  //   },
-  // },
 
   mutations: {
     changeWebliteRelatedData(state, {
@@ -118,6 +93,23 @@ export default new Vuex.Store({
       state.answer = answer
     },
 
+    addQuestion(state) {
+      const newQuestion = {
+        id: state.test.length,
+        question: state.question,
+        firstOption: state.firstOption,
+        secondOption: state.secondOption,
+        thirdOption: state.thirdOption,
+        forthOption: state.forthOption,
+        answer: state.answer,
+      }
+      state.test = R.prepend(newQuestion, state.test)
+    },
+
+    addTest(state, test) {
+      state.test = test
+    },
+
     changePage(state, page) {
       state.page = page
       W.analytics("CHANGE_TAB", {
@@ -146,7 +138,7 @@ export default new Vuex.Store({
     },
   },
 
-  actions: {
+  actions: { 
     changeCurrentAction({
       commit
     }, value) {
@@ -155,53 +147,9 @@ export default new Vuex.Store({
       timer = setTimeout(() => commit('changeCurrentAction', ''), 0)
     },
 
-    addResult({
-      commit,
-      state
-    }, text) {
-      commit('changePage', 0)
-      sendNotification('add', {
-        text
-      }, state)
-      db.add(text, state.username)
-      W.analytics("ADD_TODO")
-    },
-
-    changeTodoText({
-      commit
-    }, {
-      id,
-      text
-    }) {
-      db.changeText(id, text)
-      commit('changeEditableText', '')
-      W.analytics("EDIT_TODO")
-    },
-
-    changeTodoFunctor({
-      state,
-      dispatch
-    }, {
-      id,
-      done
-    }) {
-      dispatch('changeCurrentAction', done ? 'done' : 'list-left')
-      done && sendNotification('done', {
-        id
-      }, state)
-      db.changeFunctor(id, done ? state.username : '')
-      W.analytics("DONE_TODO")
-    },
-
-    changeTodoVit({
-      dispatch
-    }, {
-      id,
-      vit
-    }) {
-      dispatch('changeCurrentAction', vit ? 'vit' : 'list-right')
-      db.changeVit(id, vit)
-      W.analytics("VIT_CLICK")
+    addTest({ state }) {
+      db.add(state.test) 
+      W.analytics("ADD_TEST")
     },
 
     removeTodo({
@@ -216,8 +164,8 @@ export default new Vuex.Store({
   plugins: [
     ({
       commit
-    }) => W.share.subscribe(todos =>
-      commit('changeTodos', todos)
+    }) => W.share.subscribe(test =>
+      commit('addTest', test)
     ),
   ],
 })

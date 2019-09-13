@@ -1,5 +1,4 @@
 <template>
-<v-row justify="center">
   <v-dialog
     :value="dialogIsOpen"
     @input="changeDialogIsOpen"
@@ -8,21 +7,16 @@
     transition="dialog-bottom-transition"
   >
     <v-card>
-      <v-toolbar dark class="dialog">
-        <v-btn icon dark @click="changeDialogIsOpen(false)">
+      <v-toolbar dark class="dialog" color="#343A6E">
+        <v-btn icon dark @click="handleClose">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title>{{ title }}</v-toolbar-title>
-        <div class="flex-grow-1"></div>
-        <v-toolbar-items>
-          <v-btn dark text @click="changeDialogIsOpen(false)">{{ done }}</v-btn>
-        </v-toolbar-items>
       </v-toolbar>
 
       <slot />
     </v-card>
   </v-dialog>
-</v-row>
 </template>
 
 <script>
@@ -34,13 +28,17 @@ export default {
 
   props: {
     title: { type: String, required: true },
-    done: { type: String, required: false },
   },
 
   computed: mapState(['dialogIsOpen']),
 
   methods: {
       ...mapMutations(['changeDialogIsOpen']),
+
+      handleClose() {
+        this.changeDialogIsOpen(false)
+        this.$router.push('/')
+      }
   },
 }
 </script>

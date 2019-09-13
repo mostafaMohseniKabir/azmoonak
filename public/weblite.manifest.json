@@ -1,6 +1,6 @@
 {
   "name": "azmoonak",
-  "id": "5c30c783e717255f17fb3ad9",
+  "id": "5d7bc4e57866d457a2d3b281",
   "instantiable": true,
   "creator": true,
   "userInfo": true,
@@ -9,20 +9,20 @@
   "width": false,
   "height": false,
   "shareDB": true,
-  "searchable": true,
+  "searchable": false,
   "customizeArray": [{
     "type": "textField",
     "name": "title",
     "title": "Title",
     "detail": {
-      "placeholder": "TO DO LITE"
+      "placeholder": "آزمون جامع دین و زندگی"
     },
-    "default": "TODOs"
+    "default": "آزمون جامع دین و زندگی"
   }],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
     "main": "index"
   },
-  "version": "0.0.1"
+  "version": "0.0.3"
 }

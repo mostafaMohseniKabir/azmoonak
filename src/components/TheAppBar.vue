@@ -6,7 +6,7 @@
       >
         <!-- Title -->
         <div key="title" class="title">
-          آزمون جامع دین و زندگی دهم
+          {{ title }}
         </div>
       </div>
 
