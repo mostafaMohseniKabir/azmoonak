@@ -1,15 +1,19 @@
 <template>
-  <!-- todo items -->
-  <ul class="resultList-scroll-area">
-      <transition-group
-        class="transition"
-        name="todo"
-        tag="div"
-        :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
-      >
-        <ResultListItem v-for="result in results" :key="result.id" :result="result" class="result-item" />
-      </transition-group>
-  </ul>
+  <div>
+    <!-- todo items -->
+    <ul class="resultList-scroll-area">
+        <transition-group
+          class="transition"
+          name="todo"
+          tag="div"
+          :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+        >
+          <ResultListItem v-for="result in results" :key="result.id" :result="result" class="result-item" />
+        </transition-group>
+    </ul>
+
+    <BaseDialog title="جزئیات عملکرد" />
+  </div>
 </template>
 
 <script>
@@ -17,12 +21,14 @@
 import { mapState, mapMutations } from 'vuex'
 // components
 import ResultListItem from './ResultListItem.vue'
+const BaseDialog = () => import('../helper/component/BaseDialog')
 
 export default {
   name: 'TheResultList',
 
   components: {
     ResultListItem,
+    BaseDialog,
   },
 
   computed: {

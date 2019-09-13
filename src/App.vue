@@ -4,8 +4,6 @@
 
     <router-view />
     <!-- <TheLoading v-if="!isComponentLoaded || !isDataFetched"/> -->
-
-    <BaseDialog />
   </div>
 </template>
 
@@ -14,7 +12,6 @@ import { mapState } from 'vuex'
 // components
 // import TheLoading from './components/TheLoading'
 const TheAppBar = () => import('./components/TheAppBar')
-const BaseDialog = () => import('./helper/component/BaseDialog')
 // helpers
 import webliteHandler from './helper/function/weblite.api'
 // store
@@ -30,7 +27,6 @@ export default {
   components: {
     // TheLoading,
     TheAppBar,
-    BaseDialog,
   },
 
   computed: mapState(['page', 'isDataFetched', 'isComponentLoaded']),
@@ -38,7 +34,6 @@ export default {
   created() {
     W && webliteHandler(this)
     this.$router.push('/')
-    
   },
 }
 </script>

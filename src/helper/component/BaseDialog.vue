@@ -1,18 +1,28 @@
 <template>
-  <v-dialog :value="dialogIsOpen" @input="changeDialogIsOpen" fullscreen hide-overlay transition="dialog-bottom-transition">
+<v-row justify="center">
+  <v-dialog
+    :value="dialogIsOpen"
+    @input="changeDialogIsOpen"
+    fullscreen
+    hide-overlay
+    transition="dialog-bottom-transition"
+  >
     <v-card>
-      <v-toolbar dark color="primary">
+      <v-toolbar dark class="dialog">
         <v-btn icon dark @click="changeDialogIsOpen(false)">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>Settings</v-toolbar-title>
+        <v-toolbar-title>{{ title }}</v-toolbar-title>
         <div class="flex-grow-1"></div>
         <v-toolbar-items>
-          <v-btn dark text @click="changeDialogIsOpen(false)">Save</v-btn>
+          <v-btn dark text @click="changeDialogIsOpen(false)">{{ done }}</v-btn>
         </v-toolbar-items>
       </v-toolbar>
+
+      <slot />
     </v-card>
   </v-dialog>
+</v-row>
 </template>
 
 <script>
@@ -22,6 +32,11 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'BaseDialog',
 
+  props: {
+    title: { type: String, required: true },
+    done: { type: String, required: false },
+  },
+
   computed: mapState(['dialogIsOpen']),
 
   methods: {
@@ -29,3 +44,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+
+.dialog {
+  margin-top: 85px;
+}
+</style>

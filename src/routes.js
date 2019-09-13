@@ -1,10 +1,10 @@
-import TheLoading from './components/TheLoading'
+import TheTest from './components/TheTest'
 
 export default [
       {
         path: '/',
         name: 'test',
-        component: TheLoading,
+        component: TheTest,
       },
       {
         path: '/result',

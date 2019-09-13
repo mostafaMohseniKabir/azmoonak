@@ -1,21 +1,19 @@
 <template>
-  <div>
-    <v-list class="result-item">
-      <v-list-item @click="changeDialogIsOpen(true)">
-        <v-list-item-avatar>
-          <v-img :src="require('../assets/icons/test.svg')"></v-img>
-        </v-list-item-avatar>
+  <v-list class="result-item">
+    <v-list-item @click="changeDialogIsOpen(true)">
+      <v-list-item-avatar>
+        <v-img :src="require('../assets/icons/test.svg')"></v-img>
+      </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title>{{ result.name }}</v-list-item-title>
-        </v-list-item-content>
+      <v-list-item-content>
+        <v-list-item-title>{{ result.name }}</v-list-item-title>
+      </v-list-item-content>
 
-        <v-list-item-icon>
-          {{ result.score }}
-        </v-list-item-icon>
-      </v-list-item>
-    </v-list>
-  </div>
+      <v-list-item-icon>
+        {{ result.score }}
+      </v-list-item-icon>
+    </v-list-item>
+  </v-list>
 </template>
 
 <script>

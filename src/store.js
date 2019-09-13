@@ -29,6 +29,14 @@ export default new Vuex.Store({
     isDataFetched: false,
     isComponentLoaded: false,
 
+    // test states
+    question: '',
+    firstOption: '',
+    secondOption: '',
+    thirdOption: '',
+    forthOption: '',
+    answer: 'گزینه اول',
+
     // main data
     results: [
       {
@@ -84,6 +92,30 @@ export default new Vuex.Store({
 
     changeTitle(state, title) {
       state.title = title
+    },
+
+    changeQuestion(state, question) {
+      state.question = question
+    },
+
+    changeFirstOption(state, firstOption) {
+      state.firstOption = firstOption
+    },
+
+    changeSecondOption(state, secondOption) {
+      state.secondOption = secondOption
+    },
+
+    changeThirdOption(state, thirdOption) {
+      state.thirdOption = thirdOption
+    },
+
+    changeForthOption(state, forthOption) {
+      state.forthOption = forthOption
+    },
+
+    changeAnswer(state, answer) {
+      state.answer = answer
     },
 
     changePage(state, page) {
