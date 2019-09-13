@@ -1,0 +1,28 @@
+{
+  "name": "azmoonak",
+  "id": "5c30c783e717255f17fb3ad9",
+  "instantiable": true,
+  "creator": true,
+  "userInfo": true,
+  "fullscreen": false,
+  "inline": false,
+  "width": false,
+  "height": false,
+  "shareDB": true,
+  "searchable": true,
+  "customizeArray": [{
+    "type": "textField",
+    "name": "title",
+    "title": "Title",
+    "detail": {
+      "placeholder": "TO DO LITE"
+    },
+    "default": "TODOs"
+  }],
+  "servIndexes": {
+    "inline": "index",
+    "customize": "index",
+    "main": "index"
+  },
+  "version": "0.0.1"
+}

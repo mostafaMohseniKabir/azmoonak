@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <TheAppBar/>
+
+    <router-view />
+    <!-- <TheLoading v-if="!isComponentLoaded || !isDataFetched"/> -->
+
+    <BaseDialog />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from 'vuex'
+// components
+// import TheLoading from './components/TheLoading'
+const TheAppBar = () => import('./components/TheAppBar')
+const BaseDialog = () => import('./helper/component/BaseDialog')
+// helpers
+import webliteHandler from './helper/function/weblite.api'
+// store
+import store from './store'
+// W
+const { W } = window
 
 export default {
-  name: 'app',
+  name: 'App',
+
+  store,
+
   components: {
-    HelloWorld
-  }
+    // TheLoading,
+    TheAppBar,
+    BaseDialog,
+  },
+
+  computed: mapState(['page', 'isDataFetched', 'isComponentLoaded']),
+
+  created() {
+    W && webliteHandler(this)
+    this.$router.push('/')
+    
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
