@@ -6,19 +6,15 @@
           class="transition"
           name="todo"
           tag="div"
-          :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+          leave-to-class="leave-to"
         >
           <TheResultListItem v-for="result in results" :key="result.id" :result="result" class="result-item" />
         </transition-group>
     </ul>
 
-    <!-- <BaseDialog title="جزئیات عملکرد">
-      نام: مصطفی
-      نام خانودادگی: محسنی کبیر
-      درصد: 100%
-
-    </BaseDialog> -->
-
+    <BaseDialog title="جزئیات عملکرد">
+      {{ activeResult }}
+    </BaseDialog>
   </div>
 </template>
 
@@ -27,18 +23,18 @@
 import { mapState, mapMutations } from 'vuex'
 // components
 import TheResultListItem from './TheResultListItem.vue'
-// const BaseDialog = () => import('../helper/component/BaseDialog')
+const BaseDialog = () => import('../helper/component/BaseDialog')
 
 export default {
   name: 'TheResultList',
 
   components: {
     TheResultListItem,
-    // BaseDialog,
+    BaseDialog,
   },
 
   computed: {
-    ...mapState(['currentAction', 'results']),
+    ...mapState(['results', 'activeResult']),
   },
 
   mounted() {

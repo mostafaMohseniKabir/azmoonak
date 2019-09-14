@@ -78,9 +78,21 @@ export default new Vuex.Store({
           profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
           username: "ُSSuNAm1"
         },
-        score: '100%',
+        score: '33%',
+      },
+      {
+        id: 4,
+        userInfo: {
+          firstname: "کایند",
+          id: "5c30dc0cdf7c064bfdf85f8d",
+          lastname: "محسنی کبیر",
+          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+          username: "kind"
+        },
+        score: '12%',
       },
     ], // [{ id, name, score }],
+    activeResult: {},
   },
 
   mutations: {
@@ -170,9 +182,13 @@ export default new Vuex.Store({
     changeIsComponentLoaded(state, isComponentLoaded) {
       state.isComponentLoaded = isComponentLoaded
     },
+
+    changeActiveResult(state, activeResult) {
+      state.activeResult = activeResult
+    },
   },
 
-  actions: { 
+  actions: {
     changeCurrentAction({
       commit
     }, value) {
