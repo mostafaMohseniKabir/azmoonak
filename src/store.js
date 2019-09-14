@@ -19,7 +19,7 @@ export default new Vuex.Store({
     // stuff came from weblite
     title: 'آزمون جامع دین و زندگی',
     username: 'mostafa_m_k',
-    isAdmin: false,
+    isAdmin: true,
 
     // view states
     page: 1, // 1: TEST, 0: RESULT
