@@ -19,7 +19,13 @@ export default new Vuex.Store({
   state: {
     // stuff came from weblite
     title: 'آزمون جامع دین و زندگی',
-    username: 'mostafa_m_k',
+    userInfo: {
+      firstname: "مصطفی",
+      id: "5c30dc0cdf7c064bfdf85f7d",
+      lastname: "محسنی کبیر",
+      profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+      username: "mostafa_m_k"
+    },
     isAdmin: true,
 
     // view states
@@ -57,12 +63,13 @@ export default new Vuex.Store({
   mutations: {
     changeWebliteRelatedData(state, {
       title,
-      username,
+      userInfo,
       isAdmin
     }) {
-      state.title = title || 'TODOLITE'
-      state.username = username
+      state.title = title || 'آزمون جامع'
+      state.userInfo = userInfo
       state.isAdmin = isAdmin
+      console.log(state.userInfo)
     },
 
     changeTitle(state, title) {

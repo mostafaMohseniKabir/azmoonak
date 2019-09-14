@@ -1,6 +1,6 @@
 // W
 const {
-  W
+  W, R,
 } = window
 
 const handleNormalMode = (start, vue) => {
@@ -16,11 +16,18 @@ const handleNormalMode = (start, vue) => {
       },
     }, ] = data
 
-    vue.$store.commit('changeWebliteRelatedData', {
-      username: name,
-      title,
-      isAdmin: creator,
+    W.getUsersInfo([name]).then(info => {
+      const userInfo = R.head(R.values(info))
+      
+      vue.$store.commit('changeWebliteRelatedData', {
+        userInfo,
+        title,
+        isAdmin: creator,
+      })
     })
+      
+
+    
 
     vue.$store.commit('changeIsDataFetched', true)
   })
