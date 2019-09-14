@@ -49,15 +49,14 @@ export default {
 @import '../helper/style/_variable.scss';
 
 .result-item {
-  border: 1px solid #707070;
-  margin: 10px;
-  box-shadow: 0px 3px 6px #000000;
+  // border: 1px solid #707070;
+  display: flex;
   transition: all 0.5s ease;
 }
 
-.result-item:first-of-type {
-  font-size: 30px;
-}
+// .result-item:first-of-type {
+//   font-size: 30px;
+// }
 
 .result-enter {
   opacity: 0;
