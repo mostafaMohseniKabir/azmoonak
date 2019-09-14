@@ -7,7 +7,7 @@
     <div class="result-list_number_box" :class="{'result-list_number_box_self' : usernameCheck}">
       <p>{{ result.id }}</p>
     </div>
-    <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck, 'result-list_avatar_self' : !usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
+    <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
     <span class="result-list_name" :class="{'result-list_name_self' : usernameCheck}">{{ fullName }}</span>
     <span class="result-list_score" :class="{'result-list_score_self' : usernameCheck}">{{ result.score }}</span>
   </div>
