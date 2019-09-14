@@ -69,7 +69,6 @@ export default new Vuex.Store({
       state.title = title || 'آزمون جامع'
       state.userInfo = userInfo
       state.isAdmin = isAdmin
-      console.log(state.userInfo)
     },
 
     changeTitle(state, title) {
@@ -109,6 +108,7 @@ export default new Vuex.Store({
         thirdOption: state.thirdOption,
         forthOption: state.forthOption,
         answer: state.answer,
+        userAnswer: '',
       }
       state.test = R.prepend(newQuestion, state.test)
     },
