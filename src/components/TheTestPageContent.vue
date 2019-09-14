@@ -11,7 +11,12 @@
         <v-icon right>mdi-pencil</v-icon>
     </v-btn>
 
-    <p v-else-if="!isAdmin && !finalizeTest">هنوز آزمونی وجود ندارد</p>
+    <p
+      v-else-if="!isAdmin && !finalizeTest"
+      class="test-page-content_no-test"
+    >
+      هنوز آزمونی وجود ندارد
+    </p>
 
     <div
       v-else
@@ -68,12 +73,12 @@ export default {
 }
 
 .test-page-content_no-test {
-  color: $font-color-dark-secondary;
+  color: white;
   text-align: center;
   border-radius: 20px;
   padding: 10px 25px;
   font-weight: 300;
-  background: rgba(0,0,0,.8);
+  background: $font-color-dark-secondary;
   font-size: .9rem;
   letter-spacing: .1rem;
   font-weight: bold;
