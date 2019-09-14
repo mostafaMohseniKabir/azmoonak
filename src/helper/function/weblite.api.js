@@ -7,27 +7,16 @@ const handleNormalMode = (start, vue) => {
   start()
   Promise.all([W.loadData(), W.share.getFromServer([])]).then(data => {
     const [{
-      user: {
-        name
-      },
       creator,
       customize: {
         title
       },
     }, ] = data
 
-    W.getUsersInfo([name]).then(info => {
-      const userInfo = R.head(R.values(info))
-      
-      vue.$store.commit('changeWebliteRelatedData', {
-        userInfo,
-        title,
-        isAdmin: creator,
-      })
+    vue.$store.commit('changeWebliteRelatedData', {
+      title,
+      isAdmin: creator,
     })
-      
-
-    
 
     vue.$store.commit('changeIsDataFetched', true)
   })

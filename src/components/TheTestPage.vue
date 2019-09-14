@@ -38,9 +38,9 @@ export default {
   },
 
   methods: {
-      ...mapMutations([
-          'changeDialogIsOpen',
-        ]),
+    ...mapMutations([
+        'changeDialogIsOpen',
+      ]),
   },
 }
 </script>

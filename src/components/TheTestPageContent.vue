@@ -52,6 +52,10 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 // components
 const TheTestPageContentQuestions = () => import('./TheTestPageContentQuestions')
+// helpers
+import { findResult } from '../helper/function/time'
+
+const { R } = window
 
 export default {
   name: 'TheTestPageContent',
@@ -62,12 +66,12 @@ export default {
 
   computed: {
     ...mapState([
-        'test', 'finalizeTest', 'isAdmin',
+        'test', 'finalizeTest', 'isAdmin', 'results', 'userInfo', 'userResult',
     ]),
 
-    isSubmitted() {
-      return true
-    }
+    // userResult() {
+    //   return R.not(R.isEmpty(findResult(this.results, this.userInfo)))
+    // },
   },
 
   methods: {

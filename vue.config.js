@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/wapp/5d7bc4e57866d457a2d3b281/',
+  publicPath: '/wapp/5d7ceec47866d457a2d3b282/',
 }

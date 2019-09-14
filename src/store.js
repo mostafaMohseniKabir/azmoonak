@@ -21,13 +21,7 @@ export default new Vuex.Store({
   state: {
     // stuff came from weblite
     title: 'آزمون جامع دین و زندگی',
-    userInfo: {
-      firstname: "مصطفی",
-      id: "5c30dc0cdf7c064bfdf85f7d",
-      lastname: "محسنی کبیر",
-      profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-      username: "mostafa_m_k"
-    },
+    userInfo: {},
     isAdmin: true,
 
     // view states
@@ -48,52 +42,7 @@ export default new Vuex.Store({
     // main data
     test: [], // [{ id, question, firstOption, ...., forthOption, answer }]
 
-    results: [
-      {
-        id: 1,
-        userInfo: {
-          firstname: "مصطفی",
-          id: "5c30dc0cdf7c064bfdf85f7d",
-          lastname: "محسنی کبیر",
-          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-          username: "mostafa_m_k"
-        },
-        score: '100%',
-      },
-      {
-        id: 2,
-        userInfo: {
-          firstname: "علی",
-          id: "5c30dc0cdf7c064bfdf85f4d",
-          lastname: "عسگری",
-          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-          username: "ali"
-        },
-        score: '50%',
-      },
-      {
-        id: 3,
-        userInfo: {
-          firstname: "علیرضا",
-          id: "5c30dc0cdf7c064bfdf85f8d",
-          lastname: "محسنی کبیر",
-          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-          username: "SuNAm1"
-        },
-        score: '33%',
-      },
-      {
-        id: 4,
-        userInfo: {
-          firstname: "کایند",
-          id: "5c30dc0cdf7c064bfdf85f8d",
-          lastname: "محسنی کبیر",
-          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-          username: "kind"
-        },
-        score: '12%',
-      },
-    ], // [{ id, name, score }],
+    results: [], // [{ id, name, score }],
     userResult: null,
     activeResult: {},
   },
@@ -101,12 +50,14 @@ export default new Vuex.Store({
   mutations: {
     changeWebliteRelatedData(state, {
       title,
-      userInfo,
       isAdmin
     }) {
       state.title = title || 'آزمون جامع'
-      state.userInfo = userInfo
       state.isAdmin = isAdmin
+    },
+
+    changeUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     },
 
     changeTitle(state, title) {
@@ -223,7 +174,17 @@ export default new Vuex.Store({
         commit('changeTest', res[0].test)
         commit('changeFinalizeTest', res[0].finalizeTest)
         commit('changeResults', R.drop(1, res))
-        commit('changeUserResult', findResult(res, state.userInfo))
+    
+        window.W && window.W.getUsersInfo([name]).then(info => {
+          const userInfo = R.head(R.values(info))
+          commit('changeUserInfo', userInfo)
+          commit('changeUserResult', findResult(res, state.userInfo)) 
+        })
+
+        console.log('what the hell', state.userInfo)
+        console.log('res:', res)
+        console.log('results:', state.results)
+        console.log('userResult:', state.userResult)
       },
     ),
   ],
