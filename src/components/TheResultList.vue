@@ -12,7 +12,13 @@
         </transition-group>
     </ul>
 
-    <BaseDialog title="جزئیات عملکرد" />
+    <!-- <BaseDialog title="جزئیات عملکرد">
+      نام: مصطفی
+      نام خانودادگی: محسنی کبیر
+      درصد: 100%
+
+    </BaseDialog> -->
+
   </div>
 </template>
 
@@ -21,14 +27,14 @@
 import { mapState, mapMutations } from 'vuex'
 // components
 import TheResultListItem from './TheResultListItem.vue'
-const BaseDialog = () => import('../helper/component/BaseDialog')
+// const BaseDialog = () => import('../helper/component/BaseDialog')
 
 export default {
   name: 'TheResultList',
 
   components: {
     TheResultListItem,
-    BaseDialog,
+    // BaseDialog,
   },
 
   computed: {
@@ -37,6 +43,7 @@ export default {
 
   mounted() {
     this.changeIsComponentLoaded(true)
+    console.log(this.result)
   },
 
   methods: {

@@ -2,7 +2,7 @@
   <v-dialog
     :value="dialogIsOpen"
     @input="changeDialogIsOpen"
-    
+    :fullscreen="isFull"
     transition="dialog-bottom-transition"
   >
     <v-card>
@@ -27,6 +27,7 @@ export default {
 
   props: {
     title: { type: String, required: true },
+    isFull: { type: Boolean, default: false}
   },
 
   computed: mapState(['dialogIsOpen']),
