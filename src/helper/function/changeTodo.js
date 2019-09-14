@@ -1,8 +1,5 @@
-// helper
-import { now } from './time'
 // W & R
-const { W, R } = window 
-const generateId = () => Math.floor(Math.random() * 1e15)
+const { W } = window 
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 export const add = (test, finalizeTest, index = -1 ) =>

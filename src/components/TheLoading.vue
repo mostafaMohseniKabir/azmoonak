@@ -2,6 +2,13 @@
   <div class="sp sp-3balls"></div>
 </template>
 
+<script>
+// modules
+export default {
+  name: 'TheLoading',
+}
+</script>
+
 <style lang="scss" scoped>
 @import '../helper/style/_variable.scss';
 

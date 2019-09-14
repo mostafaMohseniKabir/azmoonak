@@ -7,6 +7,7 @@ import * as db from './helper/function/changeTodo.js'
 const {
   R,
 } = window
+const generateId = () => Math.floor(Math.random() * 1e15)
 
 // set vue plugin
 Vue.use(Vuex)
@@ -94,7 +95,7 @@ export default new Vuex.Store({
 
     addQuestion(state) {
       const newQuestion = {
-        id: state.test.length,
+        id: generateId,
         question: state.question,
         firstOption: state.firstOption,
         secondOption: state.secondOption,
