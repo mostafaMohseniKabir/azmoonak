@@ -1,10 +1,10 @@
 <template>
     <div>
-        <p class="header">{{ test.length + 1 }} سوال<p>
+        <p class="create-test_header">{{ test.length + 1 }} سوال<p>
 
         <v-divider></v-divider>
 
-        <form class="form">
+        <form class="create-test_form">
             <v-textarea
                 :value="question"
                 @input="changeQuestion"
@@ -67,13 +67,13 @@
             />
 
             <v-btn
-                class="button-weight"
+                class="create-test_button-weight"
                 color="#00DB75"
                 dark
                 @click="handleNext"
             >سوال جدید</v-btn>
             <v-btn
-                class="button-weight"
+                class="create-test_button-weight"
                 color="#00DB75"
                 dark
                 @click="handleCreateTest"
@@ -149,24 +149,25 @@ export default {
 <style lang="scss" scoped>
 @import '../helper/style/_variable.scss';
 
-.header {
+.create-test_header {
     font-weight: bold;
     text-align: end;
     margin: 15px;
     font-size: 30px;
 }
 
-.button {
+.create-test_button {
   margin: auto 100px;
   margin-top: 300px;
 }
 
-.button-weight {
+.create-test_button-weight {
     font-weight: bold;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-.form {
-    margin: 10px;
+.create-test_form {
+    margin: 0px 10px;
 }
 </style>

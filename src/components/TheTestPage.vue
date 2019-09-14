@@ -1,17 +1,6 @@
 <template>
     <div>
-        <v-btn
-            v-if="!finalizeTest"
-            class="button button-weight"
-            color="#00DB75"
-            dark
-            @click="changeDialogIsOpen(true)"
-            x-large
-        >ایجاد آزمون
-            <v-icon right>mdi-pencil</v-icon>
-        </v-btn>
-
-        <TheTestPageContent v-if="finalizeTest" />
+        <TheTestPageContent />
 
         <BaseDialog v-if="!finalizeTest" title="ایجاد آزمون">
             <TheCreateTest />
@@ -40,6 +29,7 @@ export default {
     ...mapState([
         'test',
         'finalizeTest',
+        'isAdmin',
     ]),
   },
 
@@ -52,13 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button {
-  margin: auto 100px;
+.test-page_button {
   margin-top: 300px;
+  width: 50%;
 }
 
-.button-weight {
+.test-page_button-weight {
     font-weight: bold;
-    margin-right: 10px;
 }
 </style>

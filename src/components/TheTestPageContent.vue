@@ -1,10 +1,23 @@
 <template>
-  <div>
+  <div class="test-page-content_container">
+    <v-btn
+        v-if="isAdmin && !finalizeTest"
+        class="test-page_button test-page_button-weight"
+        color="#00DB75"
+        dark
+        @click="changeDialogIsOpen(true)"
+        x-large
+    >ایجاد آزمون
+        <v-icon right>mdi-pencil</v-icon>
+    </v-btn>
+
+    <p v-else-if="!isAdmin && !finalizeTest">هنوز آزمونی وجود ندارد</p>
+
     <div
+      v-else
       v-for="testItem in test"
       :key="testItem.id"
     >
-     
         <p dir="auto">{{ testItem.question }}</p>
         <p dir="auto">{{ testItem.firstOption }}</p>
         <p dir="auto">{{ testItem.secondOption }}</p>
@@ -31,7 +44,7 @@ export default {
 
   computed: {
     ...mapState([
-        'test',
+        'test', 'finalizeTest', 'isAdmin',
     ]),
   },
 
@@ -44,7 +57,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  margin-top: 100px;
+@import '../helper/style/_variable.scss';
+
+.test-page-content_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.test-page-content_no-test {
+  color: $font-color-dark-secondary;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-weight: 300;
+  background: rgba(0,0,0,.8);
+  font-size: .9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
 }
 </style>

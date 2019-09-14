@@ -7,7 +7,7 @@
     transition="dialog-bottom-transition"
   >
     <v-card>
-      <v-toolbar dark class="dialog" color="#343A6E">
+      <v-toolbar dark color="#343A6E">
         <v-btn icon dark @click="handleClose">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -42,10 +42,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-
-.dialog {
-  margin-top: 85px;
-}
-</style>
