@@ -25,6 +25,17 @@
     >
       <TheTestPageContentQuestions :testItem="testItem" :index="index" />
     </div>
+
+    <v-btn
+        v-if="!isAdmin && finalizeTest"
+        class="test-page-content_button"
+        color="#00DB75"
+        dark
+        @click=""
+        x-large
+    >اتمام آزمون
+        <v-icon right>mdi-flag-checkered</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -74,6 +85,8 @@ export default {
 }
 
 .test-page-content_no-test {
+  margin: auto;
+  margin-top: 60%;
   color: white;
   text-align: center;
   border-radius: 20px;

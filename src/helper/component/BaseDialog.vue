@@ -36,7 +36,6 @@ export default {
 
       handleClose() {
         this.changeDialogIsOpen(false)
-        this.$router.push('/')
       }
   },
 }

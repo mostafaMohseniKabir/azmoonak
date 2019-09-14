@@ -1,11 +1,20 @@
 <template>
   <div class="base-option_container">
     <p dir="auto" class="base-option_text"><strong dir="auto">({{ number }}</strong> {{ text }}</p>
-    <v-radio class="base-option_radio" :value="value"></v-radio>
+    <v-radio
+      v-if="isAdmin"
+      class="base-option_radio"
+      :value="value"
+      on-icon="mdi-check-box-outline"
+      off-icon="mdi-checkbox-blank-outline"
+    />
   </div>
 </template>
 
 <script>
+// modules
+import { mapState } from 'vuex'
+
 export default {
   name: 'BaseOption',
 
@@ -13,6 +22,12 @@ export default {
     text: { type: String, required: true },
     value: { type: String, required: true },
     number: { type: Number, required: true },
+  },
+
+  computed: {
+    ...mapState([
+        'isAdmin',
+    ]),
   },
 }
 </script>
@@ -22,13 +37,14 @@ export default {
 
 .base-option_container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   margin: 0px 5px;
 }
 
 .base-option_text {
-    margin: 10px 10px 0px -5px;
+    margin: 0px 5px 0px -5px;
     text-align: right;
 }
 

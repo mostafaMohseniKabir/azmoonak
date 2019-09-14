@@ -58,7 +58,7 @@ export default {
 }
 
 .test-page-content_question {
-  margin: 10px 5px 10px 0px;
+  margin: 10px 10px 10px 0px;
   font-weight: bold;
 }
 
