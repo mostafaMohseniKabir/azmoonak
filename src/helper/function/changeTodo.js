@@ -2,11 +2,18 @@
 const { W } = window 
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const add = (test, finalizeTest, index = -1 ) =>
+export const addTest = (test, finalizeTest, index = -1 ) =>
   dispatch([
     '__insert',
     [index, { test, finalizeTest }],
   ])
+
+export const addResult = (result, userInfo, index = -1) =>
+  dispatch([
+    '__insert',
+    [index, { result, userInfo }],
+  ])
+
 
 export const changeText = (id, text) =>
   dispatch([

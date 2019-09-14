@@ -2,7 +2,7 @@
   <div class="base-option_container">
     <p dir="auto" class="base-option_text"><strong dir="auto">({{ number }}</strong> {{ text }}</p>
     <v-radio
-      v-if="isAdmin"
+      v-if="!isAdmin"
       class="base-option_radio"
       :value="value"
       on-icon="mdi-check-box-outline"

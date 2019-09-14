@@ -3,6 +3,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // shareDB
 import * as db from './helper/function/changeTodo.js'
+// helpers
+import { findResult } from './helper/function/time'
 // R, W
 const {
   R,
@@ -92,6 +94,7 @@ export default new Vuex.Store({
         score: '12%',
       },
     ], // [{ id, name, score }],
+    userResult: null,
     activeResult: {},
   },
 
@@ -154,13 +157,17 @@ export default new Vuex.Store({
 
     changePage(state, page) {
       state.page = page
-      window.W && window.W.analytics("CHANGE_TAB", {
-        name: page
-      })
+      // window.W && window.W.analytics("CHANGE_TAB", {
+      //   name: page
+      // })
     },
 
     changeResults(state, results) {
       state.results = results
+    },
+
+    changeUserResult(state, userResult) {
+      state.userResult = userResult
     },
 
     changeCurrentAction(state, action) {
@@ -198,18 +205,26 @@ export default new Vuex.Store({
     },
 
     addTest({ state }) {
-      db.add(state.test, state.finalizeTest)
-      window.W && window.W.analytics("ADD_TEST")
+      db.addTest(state.test, state.finalizeTest)
+      // window.W && window.W.analytics("ADD_TEST")
     },
+
+    addResult({ state }) {
+      db.addResult(state.test, state.userInfo)
+      // window.W && window.W.analytics("ADD_RESULT")
+    }
   },
 
   plugins: [
     ({
-      commit
+      commit, state,
     }) => window.W && window.W.share.subscribe(res => {
-      commit('changeTest', res[0].test)
-      commit('changeFinalizeTest', res[0].finalizeTest)
-    }
+        // console.log(res)
+        commit('changeTest', res[0].test)
+        commit('changeFinalizeTest', res[0].finalizeTest)
+        commit('changeResults', R.drop(1, res))
+        commit('changeUserResult', findResult(res, state.userInfo))
+      },
     ),
   ],
 })

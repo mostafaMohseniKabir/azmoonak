@@ -12,36 +12,44 @@
     </v-btn>
 
     <p
-      v-else-if="!isAdmin && !finalizeTest"
+      v-if="!isAdmin && !finalizeTest"
       class="test-page-content_no-test"
     >
       هنوز آزمونی وجود ندارد
     </p>
 
-    <div
-      v-else
-      v-for="(testItem, index) in test"
-      :key="testItem.id"
-    >
-      <TheTestPageContentQuestions :testItem="testItem" :index="index" />
-    </div>
+    <template v-if="finalizeTest && !userResult">
+      <div
+        v-for="(testItem, index) in test"
+        :key="testItem.id"
+      >
+        <TheTestPageContentQuestions :testItem="testItem" :index="index" />
+      </div>
+    </template>
 
     <v-btn
-        v-if="!isAdmin && finalizeTest"
+        v-if="!isAdmin && finalizeTest && !userResult"
         class="test-page-content_button"
         color="#00DB75"
         dark
-        @click=""
+        @click="handleSubmitTest"
         x-large
     >اتمام آزمون
         <v-icon right>mdi-flag-checkered</v-icon>
     </v-btn>
+
+    <p
+      v-if="!isAdmin && userResult"
+      class="test-page-content_no-test"
+    >
+      شما در آزمون شرکت کرده‌اید
+    </p>
   </div>
 </template>
 
 <script>
 // modules
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 // components
 const TheTestPageContentQuestions = () => import('./TheTestPageContentQuestions')
 
@@ -56,12 +64,22 @@ export default {
     ...mapState([
         'test', 'finalizeTest', 'isAdmin',
     ]),
+
+    isSubmitted() {
+      return true
+    }
   },
 
   methods: {
-      ...mapMutations([
-          'changeDialogIsOpen',
-        ]),
+    ...mapMutations([
+        'changeDialogIsOpen',
+      ]),
+
+      ...mapActions(['addResult']),
+
+      handleSubmitTest() {
+        this.addResult()
+      },
   },
 }
 </script>
@@ -72,9 +90,6 @@ export default {
 .test-page-content_container {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-  // height: 100vh;
   padding-top: 100px;
 }
 

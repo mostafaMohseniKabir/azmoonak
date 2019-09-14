@@ -22,3 +22,10 @@ export function debounce(fn, delay) {
     }, delay)
   }
 }
+
+export const findResult = (res, userInfo) => {
+  const usersInfo = R.map(item => item.userInfo)(R.drop(1, res))
+  const index = R.findIndex(R.propEq('username', userInfo.username))(usersInfo)
+
+  return res[index + 1]
+}

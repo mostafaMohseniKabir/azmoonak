@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  // <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
-
 import { mapState } from 'vuex'
 // components
 import TheLoading from './components/TheLoading'
@@ -29,8 +27,6 @@ export default {
     TheLoading,
     TheAppBar,
   },
-
-  computed: mapState(['page', 'isDataFetched', 'isComponentLoaded']),
 
   created() {
     W && webliteHandler(this)
