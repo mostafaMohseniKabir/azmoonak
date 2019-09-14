@@ -49,13 +49,36 @@ export default new Vuex.Store({
     results: [
       {
         id: 1,
-        name: "مصطفی محسنی کبیر",
+        userInfo: {
+          firstname: "مصطفی",
+          id: "5c30dc0cdf7c064bfdf85f7d",
+          lastname: "محسنی کبیر",
+          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+          username: "mostafa_m_k"
+        },
         score: '100%',
       },
       {
         id: 2,
-        name: "علی عسگری",
+        userInfo: {
+          firstname: "علی",
+          id: "5c30dc0cdf7c064bfdf85f4d",
+          lastname: "عسگری",
+          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+          username: "ali"
+        },
         score: '50%',
+      },
+      {
+        id: 3,
+        userInfo: {
+          firstname: "علیرضا",
+          id: "5c30dc0cdf7c064bfdf85f8d",
+          lastname: "محسنی کبیر",
+          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+          username: "ُSSuNAm1"
+        },
+        score: '100%',
       },
     ], // [{ id, name, score }],
   },

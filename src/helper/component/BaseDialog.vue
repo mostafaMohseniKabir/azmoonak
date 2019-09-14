@@ -2,8 +2,7 @@
   <v-dialog
     :value="dialogIsOpen"
     @input="changeDialogIsOpen"
-    fullscreen
-    hide-overlay
+    
     transition="dialog-bottom-transition"
   >
     <v-card>
