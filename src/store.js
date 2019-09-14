@@ -76,7 +76,7 @@ export default new Vuex.Store({
           id: "5c30dc0cdf7c064bfdf85f8d",
           lastname: "محسنی کبیر",
           profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
-          username: "ُSSuNAm1"
+          username: "SuNAm1"
         },
         score: '100%',
       },

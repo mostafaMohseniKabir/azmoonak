@@ -2,60 +2,30 @@
   <div
     class="result-list_box"
     :class="{ 'result-list_box_self' : usernameCheck }"
-    @click="changeDialogIsOpen(true)"
+    @click="handleOpenMoreInfo"
   >
     <div class="result-list_number_box" :class="{'result-list_number_box_self' : usernameCheck}">
       <p>{{ result.id }}</p>
     </div>
-    <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck, 'result-list_avatar_self' : !usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
+    <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
     <span class="result-list_name" :class="{'result-list_name_self' : usernameCheck}">{{ fullName }}</span>
     <span class="result-list_score" :class="{'result-list_score_self' : usernameCheck}">{{ result.score }}</span>
-    <BaseDialog title="جزئیات عملکرد">
-      درصد: {{result.score}}
-    </BaseDialog>
   </div>
-
-  <!-- <v-list class="result-item">
-    <v-list-item @click="changeDialogIsOpen(true)">
-      <v-list-item-avatar>
-        <v-img :src="require('../assets/icons/test.svg')"></v-img>
-      </v-list-item-avatar>
-
-      <v-list-item-content>
-        <v-list-item-title>{{ result.name }}</v-list-item-title>
-      </v-list-item-content>
-
-      <v-list-item-icon>
-        {{ result.score }} 
-      </v-list-item-icon>
-    </v-list-item>
-  </v-list>-->
 </template>
 
 <script>
 // modules
-import { mapState, mapMutations, mapActions } from "vuex";
-// components
-const BaseDialog = () => import('../helper/component/BaseDialog')
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "TheResultListItem",
-
-  components: {
-    BaseDialog
-  },
 
   props: {
     result: { type: Object, required: true }
   },
 
-  data: () => ({
-    editable: false,
-    controllerOpen: false
-  }),
-
   computed: {
-    ...mapState(["editableText", "dialogIsOpen", "userInfo"]),
+    ...mapState([ "dialogIsOpen", "userInfo" ]),
 
     usernameCheck() {
       return this.result.userInfo.username === this.userInfo.username;
@@ -69,26 +39,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["changeTodoText"]),
+    ...mapMutations(["changeDialogIsOpen", "changeActiveResult"]),
 
-    ...mapMutations(["changeDialogIsOpen"]),
-
-    toggleEditable(value) {
-      if (value !== undefined && this.editable) this.edit();
-      this.editable = value;
-    },
-
-    edit() {
-      const {
-        todo: { id },
-        editableText,
-        changeTodoText
-      } = this;
-      changeTodoText({ id, text: editableText });
-      this.editable = false;
+    handleOpenMoreInfo() {
+      this.changeDialogIsOpen(true)
+      this.changeActiveResult(this.result)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
