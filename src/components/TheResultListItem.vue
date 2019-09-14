@@ -7,9 +7,12 @@
     <div class="result-list_number_box" :class="{'result-list_number_box_self' : usernameCheck}">
       <p>{{ result.id }}</p>
     </div>
-    <img class="result-list_avatar" :src="require('../assets/icons/test.svg')" alt="test" />
+    <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck, 'result-list_avatar_self' : !usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
     <span class="result-list_name" :class="{'result-list_name_self' : usernameCheck}">{{ fullName }}</span>
     <span class="result-list_score" :class="{'result-list_score_self' : usernameCheck}">{{ result.score }}</span>
+    <BaseDialog title="جزئیات عملکرد">
+      درصد: {{result.score}}
+    </BaseDialog>
   </div>
 
   <!-- <v-list class="result-item">
@@ -33,12 +36,14 @@
 // modules
 import { mapState, mapMutations, mapActions } from "vuex";
 // components
-const { R } = window;
+const BaseDialog = () => import('../helper/component/BaseDialog')
 
 export default {
   name: "TheResultListItem",
 
-  components: {},
+  components: {
+    BaseDialog
+  },
 
   props: {
     result: { type: Object, required: true }
@@ -94,7 +99,7 @@ export default {
   border-radius: 5px;
   background-color: #fff;
   height: 60px;
-  width: 100%;
+  width: 92%;
   margin: 10px 15px;
   display: flex;
   flex-direction: row-reverse;
@@ -135,6 +140,18 @@ export default {
 
 .result-list_avatar {
   margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $color-primary;
+}
+
+.result-list_avatar_self {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $color-secondary;
 }
 
 .result-list_name {
@@ -148,7 +165,7 @@ export default {
 
 .result-list_score {
   position: absolute;
-  left: 30px;
+  left: 25px;
   font-size: $font-size-medium;
   font-weight: $font-weight-normal;
   color: $color-secondary;

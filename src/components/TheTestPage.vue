@@ -2,7 +2,7 @@
     <div>
         <TheTestPageContent />
 
-        <BaseDialog v-if="!finalizeTest" title="ایجاد آزمون">
+        <BaseDialog v-if="!finalizeTest" title="ایجاد آزمون" isFull>
             <TheCreateTest />
         </BaseDialog>
     </div>
