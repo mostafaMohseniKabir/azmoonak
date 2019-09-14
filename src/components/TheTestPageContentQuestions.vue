@@ -2,11 +2,16 @@
   <div class="test-page-content_question-container">
     <p dir="auto" class="test-page-content_question"><strong dir="auto">-{{ index + 1 }}</strong> {{ testItem.question }}</p>
 
-    <v-radio-group class="test-page-content_options" v-model="radios" :mandatory="false">
-        <BaseOption :text="testItem.firstOption" value="radio-1" number="۱" />
-        <BaseOption :text="testItem.secondOption" value="radio-2" number="۲" />
-        <BaseOption :text="testItem.thirdOption" value="radio-3" number="۳" />
-        <BaseOption :text="testItem.forthOption" value="radio-4" number="۴" />
+    <v-radio-group
+      class="test-page-content_options"
+      :value="radios"
+      @change="handleRadioChange"
+      :mandatory="false"
+    >
+        <BaseOption :text="testItem.firstOption" value="firstOption" number="۱" />
+        <BaseOption :text="testItem.secondOption" value="secondOption" number="۲" />
+        <BaseOption :text="testItem.thirdOption" value="thirdOption" number="۳" />
+        <BaseOption :text="testItem.forthOption" value="forthOption" number="۴" />
     </v-radio-group>
   </div>
 </template>
@@ -16,15 +21,14 @@
 import { mapState, mapMutations } from 'vuex'
 // components
 const BaseOption = () => import('../helper/component/BaseOption')
-// const TheCreateTest = () => import('./TheCreateTest')
+
+const { R } = window
 
 export default {
   name: 'TheTestPageContentQuestions',
 
   components: {
     BaseOption,
-    // BaseDialog,
-    // TheCreateTest,
   },
 
   props: {
@@ -37,15 +41,23 @@ export default {
   }),
 
   computed: {
-    // ...mapState([
-    //     'test', 'finalizeTest', 'isAdmin',
-    // ]),
+    ...mapState([
+        'test',
+    ]),
   },
 
   methods: {
-    //   ...mapMutations([
-    //       'changeDialogIsOpen',
-    //     ]),
+    ...mapMutations([
+        'changeTest',
+      ]),
+
+    handleRadioChange(value) {
+      this.radios = value
+      const obj = R.find(R.propEq('id', this.testItem.id), this.test)
+      const newObj = R.assoc('userAnswer', value, obj)
+      const newTest = R.map(item => item.id === this.testItem.id ? newObj : item)(this.test)
+      this.changeTest(newTest)
+    },
   },
 }
 </script>

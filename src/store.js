@@ -136,7 +136,7 @@ export default new Vuex.Store({
       state.test = R.prepend(newQuestion, state.test)
     },
 
-    addTest(state, test) {
+    changeTest(state, test) {
       state.test = test
     },
 
@@ -191,7 +191,7 @@ export default new Vuex.Store({
     ({
       commit
     }) => window.W && window.W.share.subscribe(res => {
-      commit('addTest', res[0].test)
+      commit('changeTest', res[0].test)
       commit('changeFinalizeTest', res[0].finalizeTest)
     }
     ),

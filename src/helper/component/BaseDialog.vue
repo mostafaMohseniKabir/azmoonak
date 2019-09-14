@@ -36,7 +36,7 @@ export default {
 
       handleClose() {
         this.changeDialogIsOpen(false)
-      }
+      },
   },
 }
 </script>

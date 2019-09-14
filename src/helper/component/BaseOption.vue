@@ -21,7 +21,7 @@ export default {
   props: {
     text: { type: String, required: true },
     value: { type: String, required: true },
-    number: { type: Number, required: true },
+    number: { type: String, required: true },
   },
 
   computed: {
