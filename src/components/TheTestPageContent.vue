@@ -23,14 +23,19 @@
       v-for="(testItem, index) in test"
       :key="testItem.id"
     >
-      <div class="test-page-content_question-container">
-        <p dir="auto" class="test-page-content_question"><strong dir="auto">-{{ index + 1 }}</strong> {{ testItem.question }}</p>
-        <p dir="auto" class="test-page-content_option"><strong dir="auto">(۱</strong> {{ testItem.firstOption }}</p>
-        <p dir="auto" class="test-page-content_option"><strong dir="auto">(۲</strong> {{ testItem.secondOption }}</p>
-        <p dir="auto" class="test-page-content_option"><strong dir="auto">(۳</strong> {{ testItem.thirdOption }}</p>
-        <p dir="auto" class="test-page-content_option"><strong dir="auto">(۴</strong> {{ testItem.forthOption }}</p>
-      </div>
+      <TheTestPageContentQuestions :testItem="testItem" :index="index" />
     </div>
+
+    <v-btn
+        v-if="!isAdmin && finalizeTest"
+        class="test-page-content_button"
+        color="#00DB75"
+        dark
+        @click=""
+        x-large
+    >اتمام آزمون
+        <v-icon right>mdi-flag-checkered</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -38,15 +43,13 @@
 // modules
 import { mapState, mapMutations } from 'vuex'
 // components
-// const BaseDialog = () => import('../helper/component/BaseDialog')
-// const TheCreateTest = () => import('./TheCreateTest')
+const TheTestPageContentQuestions = () => import('./TheTestPageContentQuestions')
 
 export default {
   name: 'TheTestPageContent',
 
   components: {
-    // BaseDialog,
-    // TheCreateTest,
+    TheTestPageContentQuestions,
   },
 
   computed: {
@@ -72,7 +75,7 @@ export default {
   // justify-content: center;
   // align-items: center;
   // height: 100vh;
-  padding-top: 100px;
+  padding-top: 90px;
 }
 
 .test-page-content_button {
@@ -82,6 +85,8 @@ export default {
 }
 
 .test-page-content_no-test {
+  margin: auto;
+  margin-top: 60%;
   color: white;
   text-align: center;
   border-radius: 20px;
@@ -91,18 +96,5 @@ export default {
   font-size: .9rem;
   letter-spacing: .1rem;
   font-weight: bold;
-}
-
-.test-page-content_question-container {
-  margin-bottom: 10px;
-}
-
-.test-page-content_question {
-  margin: 10px;
-  font-weight: bold;
-}
-
-.test-page-content_option {
-  margin:10px;
 }
 </style>

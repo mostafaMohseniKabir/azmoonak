@@ -2,13 +2,13 @@
   <div>
     <TheAppBar/>
 
-    <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
-
     <router-view />
   </div>
 </template>
 
 <script>
+  // <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
+
 import { mapState } from 'vuex'
 // components
 import TheLoading from './components/TheLoading'

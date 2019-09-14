@@ -78,9 +78,21 @@ export default new Vuex.Store({
           profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
           username: "SuNAm1"
         },
-        score: '100%',
+        score: '33%',
+      },
+      {
+        id: 4,
+        userInfo: {
+          firstname: "کایند",
+          id: "5c30dc0cdf7c064bfdf85f8d",
+          lastname: "محسنی کبیر",
+          profileImage: "download-1.jpg-@-0125fd72-4a56-4391-8281-f5957a3d94b0.jpg",
+          username: "kind"
+        },
+        score: '12%',
       },
     ], // [{ id, name, score }],
+    activeResult: {},
   },
 
   mutations: {
@@ -92,7 +104,6 @@ export default new Vuex.Store({
       state.title = title || 'آزمون جامع'
       state.userInfo = userInfo
       state.isAdmin = isAdmin
-      console.log(state.userInfo)
     },
 
     changeTitle(state, title) {
@@ -132,11 +143,12 @@ export default new Vuex.Store({
         thirdOption: state.thirdOption,
         forthOption: state.forthOption,
         answer: state.answer,
+        userAnswer: '',
       }
       state.test = R.prepend(newQuestion, state.test)
     },
 
-    addTest(state, test) {
+    changeTest(state, test) {
       state.test = test
     },
 
@@ -170,9 +182,13 @@ export default new Vuex.Store({
     changeIsComponentLoaded(state, isComponentLoaded) {
       state.isComponentLoaded = isComponentLoaded
     },
+
+    changeActiveResult(state, activeResult) {
+      state.activeResult = activeResult
+    },
   },
 
-  actions: { 
+  actions: {
     changeCurrentAction({
       commit
     }, value) {
@@ -191,7 +207,7 @@ export default new Vuex.Store({
     ({
       commit
     }) => window.W && window.W.share.subscribe(res => {
-      commit('addTest', res[0].test)
+      commit('changeTest', res[0].test)
       commit('changeFinalizeTest', res[0].finalizeTest)
     }
     ),
