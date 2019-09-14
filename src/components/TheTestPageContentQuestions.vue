@@ -1,18 +1,23 @@
 <template>
-  <div class="test-page-content_question-container">
-    <p dir="auto" class="test-page-content_question"><strong dir="auto">-{{ index + 1 }}</strong> {{ testItem.question }}</p>
-
-    <v-radio-group
-      class="test-page-content_options"
-      :value="radios"
-      @change="handleRadioChange"
-      :mandatory="false"
-    >
-        <BaseOption :text="testItem.firstOption" value="firstOption" number="۱" />
-        <BaseOption :text="testItem.secondOption" value="secondOption" number="۲" />
-        <BaseOption :text="testItem.thirdOption" value="thirdOption" number="۳" />
-        <BaseOption :text="testItem.forthOption" value="forthOption" number="۴" />
-    </v-radio-group>
+  <div>
+    
+    <div class="test-page-content_question-container">
+      <div class="count"> 
+        <p dir="auto" class="test-page-content_question"> {{ index + 1 }} </p>
+      </div>
+      <p class="kind">{{ testItem.question }}</p>
+      <v-radio-group
+        class="test-page-content_options"
+        :value="radios"
+        @change="handleRadioChange"
+        :mandatory="false"
+      >
+          <BaseOption :text="testItem.firstOption" value="firstOption" number="۱" />
+          <BaseOption :text="testItem.secondOption" value="secondOption" number="۲" />
+          <BaseOption :text="testItem.thirdOption" value="thirdOption" number="۳" />
+          <BaseOption :text="testItem.forthOption" value="forthOption" number="۴" />
+      </v-radio-group>
+    </div>
   </div>
 </template>
 
@@ -66,12 +71,51 @@ export default {
 @import '../helper/style/_variable.scss';
 
 .test-page-content_question-container {
-  margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  background-color: white;
+  // border: 1px solid #707070;
+  border-radius: 5px;
 }
 
 .test-page-content_question {
-  margin: 10px 10px 10px 0px;
-  font-weight: bold;
+  font-size: 25px;
+  text-align: right;
+  font-weight: $font-weight-bold;
+  margin: 1px 3px 0px 0px;
+}
+
+
+.kind {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.count {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 30px;
+  // align-items: center;
+ 
+}
+
+.count p {
+  width: 23px;
+  height: 25px;;
+  text-align: center;
+  padding-top: 2px;
+   background: rgb(0, 219, 117);
+  background: linear-gradient(
+    133deg,
+    rgba(0, 219, 117, 1) 0%,
+    rgba(0, 255, 138, 1) 100%
+  );
+   color: white;
+  //  margin-right: 5px;
+   border-radius: 6px;
+  
 }
 
 .test-page-content_options {

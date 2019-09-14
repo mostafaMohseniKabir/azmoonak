@@ -40,7 +40,7 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  margin: 0px 5px;
+  margin: 5px -5px;
 }
 
 .base-option_text {

@@ -94,7 +94,10 @@ export default {
 .test-page-content_container {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  // justify-content: center;
+  // align-items: center;
+  // height: 100vh;
+  padding-top: 90px;
 }
 
 .test-page-content_button {
