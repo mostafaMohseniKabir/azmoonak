@@ -14,21 +14,18 @@ const generateId = () => Math.floor(Math.random() * 1e15)
 // set vue plugin
 Vue.use(Vuex)
 
-// variable declaration
-let timer = null
-
 export default new Vuex.Store({
   state: {
     // stuff came from weblite
     title: 'آزمون جامع دین و زندگی',
     userInfo: {},
-    isAdmin: true,
+    isAdmin: false,
 
     // view states
     page: 1, // 1: TEST, 0: RESULT
     dialogIsOpen: false,
-    isDataFetched: false,
-    isComponentLoaded: false,
+    // isDataFetched: false,
+    // isComponentLoaded: false,
     finalizeTest: false,
 
     // test states
@@ -41,23 +38,20 @@ export default new Vuex.Store({
 
     // main data
     test: [], // [{ id, question, firstOption, ...., forthOption, answer }]
-
     results: [], // [{ id, name, score }],
     userResult: null,
-    activeResult: {},
+    activeResult: null,
   },
 
   mutations: {
     changeWebliteRelatedData(state, {
       title,
+      userInfo,
       isAdmin
     }) {
       state.title = title || 'آزمون جامع'
-      state.isAdmin = isAdmin
-    },
-
-    changeUserInfo(state, userInfo) {
       state.userInfo = userInfo
+      state.isAdmin = isAdmin
     },
 
     changeTitle(state, title) {
@@ -147,14 +141,6 @@ export default new Vuex.Store({
   },
 
   actions: {
-    changeCurrentAction({
-      commit
-    }, value) {
-      if (timer) clearTimeout(timer)
-      commit('changeCurrentAction', value)
-      timer = setTimeout(() => commit('changeCurrentAction', ''), 0)
-    },
-
     addTest({ state }) {
       db.addTest(state.test, state.finalizeTest)
       // window.W && window.W.analytics("ADD_TEST")
@@ -170,21 +156,11 @@ export default new Vuex.Store({
     ({
       commit, state,
     }) => window.W && window.W.share.subscribe(res => {
-        // console.log(res)
         commit('changeTest', res[0].test)
         commit('changeFinalizeTest', res[0].finalizeTest)
         commit('changeResults', R.drop(1, res))
-    
-        window.W && window.W.getUsersInfo([name]).then(info => {
-          const userInfo = R.head(R.values(info))
-          commit('changeUserInfo', userInfo)
-          commit('changeUserResult', findResult(res, state.userInfo)) 
-        })
 
-        console.log('what the hell', state.userInfo)
-        console.log('res:', res)
-        console.log('results:', state.results)
-        console.log('userResult:', state.userResult)
+        commit('changeUserResult', findResult(res, state.userInfo))
       },
     ),
   ],

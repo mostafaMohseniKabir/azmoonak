@@ -1,12 +1,13 @@
 <template>
   <div>
-    <!-- todo items -->
+    <!-- result items -->
     <ul class="resultList-scroll-area">
-      <transition-group class="transition" name="todo" tag="div" leave-to-class="leave-to">
+      <transition-group class="transition" name="result" tag="div" leave-to-class="leave-to">
         <TheResultListItem
-          v-for="result in results"
-          :key="result.id"
+          v-for="(result, index) in results"
+          :key="result.userInfo.id"
           :result="result"
+          :index="index"
           class="result-item"
         />
       </transition-group>
@@ -17,7 +18,7 @@
         <div class="result-item_more_top">
           <div class="result-item_more_top_text">
             <p class="result-item_more_top_title">{{ fullName }}</p>
-            <p class="result-item_more_top_title2">{{ activeResult.userInfo.username }}</p>
+            <p class="result-item_more_top_title2">{{ activeResult && activeResult.userInfo.username }}</p>
           </div>
           <img class="result-list_more_top_avatar" :src="require('../assets/mostafa.jpg')" />
         </div>
@@ -25,11 +26,11 @@
         <div class="result-item_more_mid">
           <div class="result-item_more_number_rank">
             <p class="result-item_more_number_title">رتبه</p>
-            <p class="result-item_more_number_text">{{ activeResult.id }}</p>     
+            <p class="result-item_more_number_text">{{ activeResult && activeResult.userInfo.id }}</p>     
           </div>
           <div class="result-item_more_number_score">
           <p class="result-item_more_number_title">درصد</p>
-          <p class="result-item_more_number_text">{{ activeResult.score }}</p>       
+          <p class="result-item_more_number_text">100%</p>       
           </div>
         </div>
       </div>
@@ -39,17 +40,17 @@
 
 <script>
 // modules
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex"
 // components
-import TheResultListItem from "./TheResultListItem.vue";
-const BaseDialog = () => import("../helper/component/BaseDialog");
+import TheResultListItem from "./TheResultListItem.vue"
+import BaseDialog from "../helper/component/BaseDialog"
 
 export default {
   name: "TheResultList",
 
   components: {
     TheResultListItem,
-    BaseDialog
+    BaseDialog,
   },
 
   computed: {
@@ -57,20 +58,13 @@ export default {
 
     fullName() {
       return (
-        this.activeResult.userInfo.firstname +
+        this.activeResult && (this.activeResult.userInfo.firstname +
         " " +
-        this.activeResult.userInfo.lastname
-      );
+        this.activeResult.userInfo.lastname)
+      )
     }
   },
-
-  mounted() {
-    this.changeIsComponentLoaded(true);
-  },
-  methods: {
-    ...mapMutations(["changeIsComponentLoaded"])
-  }
-};
+}
 </script>
 
 <style lang="scss" scoped>

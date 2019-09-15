@@ -1,8 +1,6 @@
 <template>
     <div>
-        <TheTestPageContent v-if="isComponentLoaded || isDataFetched" />
-
-        <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
+        <TheTestPageContent />
 
         <BaseDialog v-if="!finalizeTest" title="ایجاد آزمون" isFull>
             <TheCreateTest />
@@ -32,8 +30,6 @@ export default {
         'test',
         'finalizeTest',
         'isAdmin',
-        'isDataFetched',
-        'isComponentLoaded',
     ]),
   },
 

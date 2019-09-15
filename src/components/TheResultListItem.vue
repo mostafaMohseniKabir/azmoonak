@@ -1,15 +1,14 @@
 <template>
   <div
     class="result-list_box"
-    :class="{ 'result-list_box_self' : usernameCheck }"
     @click="handleOpenMoreInfo"
   >
     <div class="result-list_number_box" :class="{'result-list_number_box_self' : usernameCheck}">
-      <p>{{ result.id }}</p>
+      <p>{{ index + 1 }}</p>
     </div>
     <img class="result-list_avatar" :class="{'result-list_avatar_self' : usernameCheck}" :src="require('../assets/mostafa.jpg')" alt="test" />
     <span class="result-list_name" :class="{'result-list_name_self' : usernameCheck}">{{ fullName }}</span>
-    <span class="result-list_score" :class="{'result-list_score_self' : usernameCheck}">{{ result.score }}</span>
+    <span class="result-list_score" :class="{'result-list_score_self' : usernameCheck}">100%</span>
   </div>
 </template>
 
@@ -21,11 +20,12 @@ export default {
   name: "TheResultListItem",
 
   props: {
-    result: { type: Object, required: true }
+    result: { type: Object, required: true },
+    index: { type: Number, required: true }
   },
 
   computed: {
-    ...mapState([ "dialogIsOpen", "userInfo" ]),
+    ...mapState([ "userInfo", "activeResult" ]),
 
     usernameCheck() {
       return this.result.userInfo.username === this.userInfo.username;
@@ -42,8 +42,8 @@ export default {
     ...mapMutations(["changeDialogIsOpen", "changeActiveResult"]),
 
     handleOpenMoreInfo() {
-      this.changeDialogIsOpen(true)
       this.changeActiveResult(this.result)
+      this.changeDialogIsOpen(true)
     }
   }
 }
