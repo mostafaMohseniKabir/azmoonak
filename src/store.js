@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // shareDB
 import * as db from './helper/function/changeTodo.js'
 // helpers
-import { findResult } from './helper/function/time'
+import { findResult, getExamData } from './helper/function/calculate'
 // R, W
 const {
   R,
@@ -147,7 +147,9 @@ export default new Vuex.Store({
     },
 
     addResult({ state }) {
-      db.addResult(state.test, state.userInfo)
+      const examInfo = getExamData(state.test)
+  
+      db.addResult(state.test, state.userInfo, examInfo)
       // window.W && window.W.analytics("ADD_RESULT")
     }
   },

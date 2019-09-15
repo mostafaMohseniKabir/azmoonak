@@ -1,4 +1,4 @@
-import { findResult } from './time'
+import { findResult } from './calculate'
 // W
 const {
   W, R,

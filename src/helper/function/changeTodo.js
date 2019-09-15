@@ -8,10 +8,10 @@ export const addTest = (test, finalizeTest, index = -1 ) =>
     [index, { test, finalizeTest }],
   ])
 
-export const addResult = (result, userInfo, index = -1) =>
+export const addResult = (result, userInfo, examInfo, index = -1) =>
   dispatch([
     '__insert',
-    [index, { result, userInfo }],
+    [index, { result, userInfo, examInfo }],
   ])
 
 
