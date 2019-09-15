@@ -34,7 +34,7 @@ export default new Vuex.Store({
     secondOption: '',
     thirdOption: '',
     forthOption: '',
-    answer: 'گزینه اول',
+    answer: 'firstOption',
 
     // main data
     test: [], // [{ id, question, firstOption, ...., forthOption, answer }]
@@ -84,7 +84,7 @@ export default new Vuex.Store({
 
     addQuestion(state) {
       const newQuestion = {
-        id: generateId,
+        id: generateId(),
         question: state.question,
         firstOption: state.firstOption,
         secondOption: state.secondOption,
@@ -93,7 +93,7 @@ export default new Vuex.Store({
         answer: state.answer,
         userAnswer: '',
       }
-      state.test = R.prepend(newQuestion, state.test)
+      state.test = R.append(newQuestion, state.test)
     },
 
     changeTest(state, test) {

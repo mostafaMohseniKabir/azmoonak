@@ -2,7 +2,7 @@
   <div class="test-page-content_container">
     <v-btn
         v-if="isAdmin && !finalizeTest"
-        class="test-page-content_button"
+        class="test-page-content_create-button"
         color="#00DB75"
         dark
         @click="changeDialogIsOpen(true)"
@@ -29,7 +29,7 @@
 
     <v-btn
         v-if="!isAdmin && finalizeTest && !userResult"
-        class="test-page-content_button"
+        class="test-page-content_finish-button"
         color="#00DB75"
         dark
         @click="handleSubmitTest"
@@ -93,10 +93,16 @@ export default {
   padding-top: 90px;
 }
 
-.test-page-content_button {
+.test-page-content_create-button {
   font-weight: bold;
   margin: auto;
   margin-top: 60%;
+}
+
+.test-page-content_finish-button {
+  font-weight: bold;
+  margin: auto;
+  margin-top: 30px;
 }
 
 .test-page-content_no-test {

@@ -18,10 +18,9 @@ const handleNormalMode = (start, vue) => {
     }, res] = data
 
     W.getUsersInfo([name]).then(info => {
-      const userInfo = R.head(R.values(info))	 
+      const userInfo = R.head(R.values(info))
       
       console.log(res)
-
       res && vue.$store.commit('changeUserResult', findResult(res, userInfo))
       vue.$store.commit('changeWebliteRelatedData', {
         userInfo,	

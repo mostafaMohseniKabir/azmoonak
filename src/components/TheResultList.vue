@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- result items -->
-    <ul  v-if="checkResults" class="resultList-scroll-area">
+    <ul class="resultList-scroll-area">
       <transition-group class="transition" name="result" tag="div" leave-to-class="leave-to">
         <TheResultListItem
           v-for="(result, index) in sortedResults"
@@ -9,20 +9,19 @@
           :result="result"
           :index="index"
           class="result-item"
-          
-        >
+        />
       </transition-group>
+
+      <p 
+        v-if="!results.length"
+        class="result-list-content_no-result"
+      >
+        هنوز نتیجه ای ثبت نشده است
+      </p>
     </ul>
 
-    <p
-      v-if="!checkResults"
-      class="test-page-content_no-test"
-    >
-      هنوز نتیجه ای ثبت نشده است
-    </p>
-
     <BaseDialog title="جزئیات عملکرد" isFull>
-      <div class="card">
+      <div class="result-list_card">
         <div class="result-item_more_top">
           <div class="result-item_more_top_text">
             <p class="result-item_more_top_title">{{ fullName }}</p>
@@ -91,11 +90,8 @@ export default {
 
     sortedResults() {
       return R.sort((a, b) => b.examInfo.percentage - a.examInfo.percentage, this.results)
-    }
+    },
   },
-  checkResults() {
-    return this.results.length > 0
-  }
 }
 </script>
 
@@ -108,7 +104,7 @@ export default {
   transition: all 0.5s ease;
 }
 
-.card {
+.result-list_card {
   // background-color: red;
   // width: 90%;
   display: flex;
@@ -286,8 +282,8 @@ export default {
   border: 0px solid $font-color-light-primary;
 }
 
-.test-page-content_no-test {
-  margin: auto;
+.result-list-content_no-result {
+  margin: 0 20px;
   margin-top: 60%;
   color: white;
   text-align: center;

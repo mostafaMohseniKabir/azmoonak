@@ -145,7 +145,7 @@ export default {
           this.changeSecondOption('')
           this.changeThirdOption('')
           this.changeForthOption('')
-          this.changeAnswer('گزینه اول')
+          this.changeAnswer('firstOption')
       },
 
       handleCreateTest() {
