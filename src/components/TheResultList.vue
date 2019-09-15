@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- result items -->
-    <ul class="resultList-scroll-area">
+    <ul  v-if="checkResults" class="resultList-scroll-area">
       <transition-group class="transition" name="result" tag="div" leave-to-class="leave-to">
         <TheResultListItem
           v-for="(result, index) in sortedResults"
@@ -9,9 +9,17 @@
           :result="result"
           :index="index"
           class="result-item"
-        />
+          
+        >
       </transition-group>
     </ul>
+
+    <p
+      v-if="!checkResults"
+      class="test-page-content_no-test"
+    >
+      هنوز نتیجه ای ثبت نشده است
+    </p>
 
     <BaseDialog title="جزئیات عملکرد" isFull>
       <div class="card">
@@ -34,18 +42,18 @@
           </div>
         </div>
 
-        <div class="result-item_more_mid">
-          <div class="result-item_more_number_rank">
-            <p class="result-item_more_number_title">تعداد درست</p>
-            <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.corrects }}</p>     
+        <div class="result-item_more_bot">
+          <div class="result-item_more_exam_correct">
+            <p class="result-item_more_number_title_examInfo">تعداد درست</p>
+            <p class="result-item_more_number_text_examInfo">{{ activeResult && activeResult.examInfo.corrects }}</p>     
           </div>
-          <div class="result-item_more_number_score">
-          <p class="result-item_more_number_title">تعداد غلط</p>
-          <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.wrongs }}</p>       
+          <div class="result-item_more_exam_left">
+          <p class="result-item_more_number_title_examInfo">تعداد غلط</p>
+          <p class="result-item_more_number_text_examInfo">{{ activeResult && activeResult.examInfo.wrongs }}</p>       
           </div>
-          <div class="result-item_more_number_score">
-          <p class="result-item_more_number_title">تعداد نزده</p>
-          <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.empties }}</p>       
+          <div class="result-item_more_exam_left">
+          <p class="result-item_more_number_title_examInfo">تعداد نزده</p>
+          <p class="result-item_more_number_text_examInfo">{{ activeResult && activeResult.examInfo.empties }}</p>       
           </div>
         </div>
       </div>
@@ -85,6 +93,9 @@ export default {
       return R.sort((a, b) => b.examInfo.percentage - a.examInfo.percentage, this.results)
     }
   },
+  checkResults() {
+    return this.results.length > 0
+  }
 }
 </script>
 
@@ -150,9 +161,9 @@ export default {
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: #00DB75;
-  
+  background-color: #00DBE4;
 }
+
 
 .result-item_more_number {
   // display: flex;
@@ -178,6 +189,34 @@ export default {
   align-items: center;
 }
 
+.result-item_more_bot {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #00DB75;
+}
+
+.result-item_more_exam_correct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-item_more_exam_left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.result-item_more_number_text_examInfo , .result-item_more_number_title_examInfo {
+  font-size: $font-size-small;
+  margin-top: 7px;
+}
 // .result-item:first-of-type {
 //   font-size: 30px;
 // }
@@ -245,5 +284,19 @@ export default {
 
 .resultList-scroll-area::-webkit-scrollbar-thumb:hover {
   border: 0px solid $font-color-light-primary;
+}
+
+.test-page-content_no-test {
+  margin: auto;
+  margin-top: 60%;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-weight: 300;
+  background: $font-color-dark-secondary;
+  font-size: .9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
 }
 </style>
