@@ -4,7 +4,7 @@
     <ul class="resultList-scroll-area">
       <transition-group class="transition" name="result" tag="div" leave-to-class="leave-to">
         <TheResultListItem
-          v-for="(result, index) in results"
+          v-for="(result, index) in sortedResults"
           :key="result.userInfo.id"
           :result="result"
           :index="index"
@@ -26,11 +26,26 @@
         <div class="result-item_more_mid">
           <div class="result-item_more_number_rank">
             <p class="result-item_more_number_title">رتبه</p>
-            <p class="result-item_more_number_text">{{ activeResult && activeResult.userInfo.id }}</p>     
+            <p class="result-item_more_number_text">{{ activeResult.index + 1 }}</p>     
           </div>
           <div class="result-item_more_number_score">
           <p class="result-item_more_number_title">درصد</p>
-          <p class="result-item_more_number_text">100%</p>       
+          <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.percentage }}</p>       
+          </div>
+        </div>
+
+        <div class="result-item_more_mid">
+          <div class="result-item_more_number_rank">
+            <p class="result-item_more_number_title">تعداد درست</p>
+            <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.corrects }}</p>     
+          </div>
+          <div class="result-item_more_number_score">
+          <p class="result-item_more_number_title">تعداد غلط</p>
+          <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.wrongs }}</p>       
+          </div>
+          <div class="result-item_more_number_score">
+          <p class="result-item_more_number_title">تعداد نزده</p>
+          <p class="result-item_more_number_text">{{ activeResult && activeResult.examInfo.empties }}</p>       
           </div>
         </div>
       </div>
@@ -44,6 +59,8 @@ import { mapState, mapMutations } from "vuex"
 // components
 import TheResultListItem from "./TheResultListItem.vue"
 import BaseDialog from "../helper/component/BaseDialog"
+
+const { R } = window
 
 export default {
   name: "TheResultList",
@@ -62,6 +79,10 @@ export default {
         " " +
         this.activeResult.userInfo.lastname)
       )
+    },
+
+    sortedResults() {
+      return R.sort((a, b) => b.examInfo.percentage - a.examInfo.percentage, this.results)
     }
   },
 }
