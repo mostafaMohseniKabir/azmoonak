@@ -91,10 +91,22 @@ export default {
 
   data: () => ({
       items: [
-        'گزینه اول',
-        'گزینه دوم',
-        'گزینه سوم',
-        'گزینه چهارم',
+          {
+            text: 'گزینه اول',
+            value: 'firstOption'
+          },
+          {
+            text: 'گزینه دوم',
+            value: 'secondOption'
+          },
+          {
+            text: 'گزینه سوم',
+            value: 'thirdOption'
+          },
+          {
+            text: 'گزینه چهارم',
+            value: 'forthOption'
+          },
       ],
     }),
 

@@ -26,7 +26,7 @@
         <div class="result-item_more_mid">
           <div class="result-item_more_number_rank">
             <p class="result-item_more_number_title">رتبه</p>
-            <p class="result-item_more_number_text">{{ activeResult.index + 1 }}</p>     
+            <p class="result-item_more_number_text">{{ activeResult && activeResult.index + 1 }}</p>     
           </div>
           <div class="result-item_more_number_score">
           <p class="result-item_more_number_title">درصد</p>
