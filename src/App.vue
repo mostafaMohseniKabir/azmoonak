@@ -7,9 +7,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 // components
-import TheLoading from './components/TheLoading'
 const TheAppBar = () => import('./components/TheAppBar')
 // helpers
 import webliteHandler from './helper/function/weblite.api'
@@ -24,7 +22,6 @@ export default {
   store,
 
   components: {
-    TheLoading,
     TheAppBar,
   },
 

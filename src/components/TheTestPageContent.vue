@@ -52,7 +52,6 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 // components
 const TheTestPageContentQuestions = () => import('./TheTestPageContentQuestions')
-const { R } = window
 
 export default {
   name: 'TheTestPageContent',

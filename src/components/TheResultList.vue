@@ -27,7 +27,7 @@
             <p class="result-item_more_top_title">{{ fullName }}</p>
             <p class="result-item_more_top_title2">{{ activeResult && activeResult.userInfo.username }}</p>
           </div>
-          <img class="result-list_more_top_avatar" :src="require('../assets/mostafa.jpg')" />
+          <img class="result-list_more_top_avatar" :src="activeResult ? `https://www.weblite.me:3000/image/${activeResult.userInfo.profileImage}` : '../assets/mostafa.jpg'" />
         </div>
 
         <div class="result-item_more_mid">
@@ -62,7 +62,7 @@
 
 <script>
 // modules
-import { mapState, mapMutations } from "vuex"
+import { mapState } from "vuex"
 // components
 import TheResultListItem from "./TheResultListItem.vue"
 import BaseDialog from "../helper/component/BaseDialog"

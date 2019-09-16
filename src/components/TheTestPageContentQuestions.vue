@@ -61,9 +61,6 @@ export default {
       const obj = R.find(R.propEq('id', this.testItem.id), this.test)
       const newObj = R.assoc('userAnswer', value, obj)
       const newTest = R.map(item => item.id === this.testItem.id ? newObj : item)(this.test)
-      console.log('obj', obj, obj.id)
-      console.log('newObj', newObj, newObj.id)
-      console.log('newTest', newTest)
       this.changeTest(newTest)
     },
   },
